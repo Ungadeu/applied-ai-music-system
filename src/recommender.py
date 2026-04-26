@@ -1,5 +1,6 @@
 from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass
+from music_knowledge import genre_explanations
 import csv
 
 @dataclass
@@ -126,3 +127,16 @@ def calculate_score(song, profile):
     total_score += 10 * (1 - abs(profile['target_danceability'] - song['danceability']))
     
     return total_score
+
+    def get_explanation(song, score):
+    # 1. Figure out what genre the song is
+    song_genre = song['genre']
+    
+    # 2. Look up the genre in our encyclopedia
+    # If we don't have it, use a backup message
+    knowledge = genre_explanations.get(song_genre, "This genre has a unique texture that perfectly matches your current targets.")
+    
+    # 3. Combine the math score with the knowledge
+    explanation = f"Score: {score}/150. We picked this {song_genre} track because: {knowledge}"
+    
+    return explanation
