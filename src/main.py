@@ -9,7 +9,7 @@ You will implement the functions in recommender.py:
 - recommend_songs
 """
 
-from .recommender import load_songs, recommend_songs
+from recommender import load_songs, recommend_songs, calculate_score, get_explanation
 
 
 def main() -> None:
@@ -22,15 +22,20 @@ def main() -> None:
     
 
     print(f"Loaded songs: {len(songs)}")
-    print("\n🎵 Top Music Recommendations 🎵\n")
+    print("\n🎵 Top Music Recommendations 🎵")
     print("-" * 60)
     
-    for i, rec in enumerate(recommendations, 1):
-        song, score, explanation = rec
+    # Loop through the top 3 songs
+    for i, item in enumerate(top_songs[:3], 1):
+        song = item['song']
+        score = item['score']
+        
+        # Call our new AI Retriever tool
+        smart_reason = get_explanation(song, round(score, 2))
+        
+        # Print it to the screen
         print(f"{i}. {song['title']} by {song['artist']}")
-        print(f"   Score: {score:.2f}/150")
-        print(f"   Reasons: {explanation}")
-        print()
+        print(f"   {smart_reason}\n")
 
 
 if __name__ == "__main__":
