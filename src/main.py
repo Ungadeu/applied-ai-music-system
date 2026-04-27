@@ -1,24 +1,26 @@
-"""
-Command line runner for the Music Recommender Simulation.
-
-This file helps you quickly run and test your recommender.
-
-You will implement the functions in recommender.py:
-- load_songs
-- score_song
-- recommend_songs
-"""
-
+import logging
 from recommender import load_songs, recommend_songs, calculate_score, get_explanation
 
+# 1. The "Diary" setup (This will create a new file called system.log)
+logging.basicConfig(filename='system.log', level=logging.INFO, 
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 def main() -> None:
-    songs = load_songs("data/songs.csv") 
+    logging.info("System Started. Loading songs...")
+    
+    try:
+        songs = load_songs("data/songs.csv") 
+        logging.info(f"Successfully loaded {len(songs)} songs.")
+    except Exception as e:
+        # If it crashes (e.g., missing file), write it in the diary!
+        logging.error(f"Failed to load songs! Error: {e}")
+        return # Stop the program if we can't load songs    
 
     # Starter example profile
-    user_prefs = {"favorite_genres": ["pop"], "favorite_moods": ["happy"], "target_energy": 0.8, "likes_acoustic": False}
+    user_profile = {"favorite_genres": ["pop"], "favorite_moods": ["happy"], "target_energy": 0.8, "likes_acoustic": False}
+    logging.info(f"Generating recommendations for profile: {user_profile['favorite_genres']}")
 
-    Recommender = recommend_songs(user_prefs, songs, k=5)
+    Recommender = recommend_songs(user_profile, songs, k=5)
     
 
     print(f"Loaded songs: {len(songs)}")
@@ -36,7 +38,10 @@ def main() -> None:
         # Print it to the screen
         print(f"{i}. {song['title']} by {song['artist']}")
         print(f"   {smart_reason}\n")
-
+        
+        # Log the success!
+        logging.info(f"Recommended: {song['title']} (Score: {score})")
+    logging.info("System finished successfully.\n")    
 
 if __name__ == "__main__":
     main()
