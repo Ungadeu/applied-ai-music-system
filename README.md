@@ -70,5 +70,5 @@ Successes: The system successfully retrieved correct facts for known genres and,
 
 Lessons: Testing revealed that empty user profiles need clear default values to prevent mathematical "None" errors.
 
-💡 Reflection
+💡 Reflection: 
 This project taught me that Applied AI is about more than just a clever algorithm; it’s about the relationship between data and the user. I learned that "optimal" math doesn't always equal a "good" recommendation if the user doesn't understand why a choice was made. Solving the "Sticker Bias" through weight adjustment and context retrieval showed me how to fine-tune AI behavior to better mimic human musical intuition.
