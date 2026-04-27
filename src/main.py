@@ -1,11 +1,10 @@
 import logging
 from recommender import load_songs, recommend_songs, calculate_score, get_explanation
 
-# 1. The "Diary" setup (This will create a new file called system.log)
+# 1. The "Diary" setup
 logging.basicConfig(filename='system.log', level=logging.INFO, 
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
-# --- NEW CODE: The Interactive Questionnaire ---
 def get_user_input():
     print("\n🎧 Welcome to the AI Vibe Curator! 🎧")
     print("Let's build your custom writing playlist.\n")
