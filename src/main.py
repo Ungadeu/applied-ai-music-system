@@ -18,7 +18,7 @@ def get_user_input():
     mood_ans = input("What mood do you need? (e.g., happy, chill, intense, peaceful): ")
     moods = [mood_ans.strip().lower()] if mood_ans else ["chill"]
     
-    # 3. Ask for Energy (with error handling so it doesn't crash!)
+    # 3. Ask for Energy 
     energy_ans = input("How much energy do you need? (0.0 for asleep, 1.0 for sprinting): ")
     try:
         energy = float(energy_ans)
@@ -28,7 +28,6 @@ def get_user_input():
         
     print("\nAnalyzing catalog and retrieving context...\n")
     
-    # Package it all up into the dictionary your AI expects
     return {
         "favorite_genres": genres,
         "favorite_moods": moods,
@@ -60,7 +59,6 @@ def main() -> None:
     print("\n🎵 Top Music Recommendations 🎵\n")
     print("-" * 60)
     
-    # We use 'recommendations' instead of 'top_songs' here
     for i, rec in enumerate(Recommender[:3], 1):
         # Your system bundles 3 things together, so we unpack them here:
         song, score, old_reasons = rec
