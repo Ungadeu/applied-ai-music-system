@@ -1,6 +1,6 @@
+from music_knowledge import genre_explanations
 from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass
-from music_knowledge import genre_explanations
 import csv
 
 @dataclass
