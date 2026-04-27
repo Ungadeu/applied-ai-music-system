@@ -5,6 +5,40 @@ from recommender import load_songs, recommend_songs, calculate_score, get_explan
 logging.basicConfig(filename='system.log', level=logging.INFO, 
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
+# --- NEW CODE: The Interactive Questionnaire ---
+def get_user_input():
+    print("\n🎧 Welcome to the AI Vibe Curator! 🎧")
+    print("Let's build your custom writing playlist.\n")
+    
+    # 1. Ask for Genre
+    genre_ans = input("What genre are you looking for? (e.g., pop, lofi, rock, ambient): ")
+    # Clean up the text and put it in a list
+    genres = [genre_ans.strip().lower()] if genre_ans else ["lofi"] 
+    
+    # 2. Ask for Mood
+    mood_ans = input("What mood do you need? (e.g., happy, chill, intense, peaceful): ")
+    moods = [mood_ans.strip().lower()] if mood_ans else ["chill"]
+    
+    # 3. Ask for Energy (with error handling so it doesn't crash!)
+    energy_ans = input("How much energy do you need? (0.0 for asleep, 1.0 for sprinting): ")
+    try:
+        energy = float(energy_ans)
+    except ValueError:
+        print("  -> Whoops, that wasn't a number! We will default to medium energy (0.5).")
+        energy = 0.5
+        
+    print("\nAnalyzing catalog and retrieving context...\n")
+    
+    # Package it all up into the dictionary your AI expects
+    return {
+        "favorite_genres": genres,
+        "favorite_moods": moods,
+        "target_energy": energy,
+        "target_valence": 0.5,        # Defaulting these so the math doesn't break
+        "target_acousticness": 0.5,
+        "target_danceability": 0.5
+    }
+
 def main() -> None:
     logging.info("System Started. Loading songs...")
     
