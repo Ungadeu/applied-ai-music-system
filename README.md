@@ -72,3 +72,6 @@ Lessons: Testing revealed that empty user profiles need clear default values to 
 
 💡 Reflection: 
 This project taught me that Applied AI is about more than just a clever algorithm; it’s about the relationship between data and the user. I learned that "optimal" math doesn't always equal a "good" recommendation if the user doesn't understand why a choice was made. Solving the "Sticker Bias" through weight adjustment and context retrieval showed me how to fine-tune AI behavior to better mimic human musical intuition.
+
+Project Walkthrough Video Link:
+https://www.loom.com/share/b972fc299e6346be9fe1573c7673c477
