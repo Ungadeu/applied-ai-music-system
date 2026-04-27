@@ -18,19 +18,19 @@ def main() -> None:
     # Starter example profile
     user_prefs = {"favorite_genres": ["pop"], "favorite_moods": ["happy"], "target_energy": 0.8, "likes_acoustic": False}
 
-    recommendations = recommend_songs(user_prefs, songs, k=5)
+    Recommender = recommend_songs(user_prefs, songs, k=5)
     
 
     print(f"Loaded songs: {len(songs)}")
-    print("\n🎵 Top Music Recommendations 🎵")
+    print("\n🎵 Top Music Recommendations 🎵\n")
     print("-" * 60)
     
-    # Loop through the top 3 songs
-    for i, item in enumerate(top_songs[:3], 1):
-        song = item['song']
-        score = item['score']
+    # We use 'recommendations' instead of 'top_songs' here
+    for i, rec in enumerate(Recommender[:3], 1):
+        # Your system bundles 3 things together, so we unpack them here:
+        song, score, old_reasons = rec
         
-        # Call our new AI Retriever tool
+        # Call our new AI Retriever tool from the encyclopedia
         smart_reason = get_explanation(song, round(score, 2))
         
         # Print it to the screen
